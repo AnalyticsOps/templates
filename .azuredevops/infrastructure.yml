@@ -8,7 +8,7 @@ resources:
       type: 'git'
       name: 'AnalyticsOps/pipelines'
       path: 'pipelines'
-      ref: 'refs/tags/v3.2'
+      ref: 'refs/tags/v3.3'
 
 
 parameters:
@@ -46,4 +46,4 @@ stages:
           workingDirectory: 'terraform/dev'
           serviceConnection: '{{ serviceConnection }}'
           resourceGroup: '{{ resourceGroup }}'
-          manualValidation: false
+

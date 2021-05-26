@@ -36,9 +36,11 @@ stages:
 
   - template: pipelines/infrastructure/stages/analytics-ops-project.yml@pipelines
     parameters:
+{% raw %}
       action: ${{ parameters.action }}
       projectName: ${{ parameters.projectName }}
       resourceNumber: ${{ parameters.resourceNumber }}
+{% endraw %}
       environments:
         - name: 'dev'
           workingDirectory: 'terraform/dev'

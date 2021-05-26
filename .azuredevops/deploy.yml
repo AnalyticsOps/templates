@@ -32,11 +32,15 @@ stages:
 
   - template: pipelines/model/build-and-deploy.yml@pipelines
     parameters:
+{% raw %}
       projectName: ${{ parameters.projectName }}
       resourceNumber: ${{ parameters.resourceNumber }}
+{% endraw %}
       mlServiceConnection: 'analyticsops-irisdemo-D'
       mlResourceGroup: 'analyticsops-irisdemo-D'
+{% raw %}
       mlModelVersion: ${{ parameters.modelVersion }}
+{% endraw %}
       crServiceConnection: 'analyticsops-irisdemo-D'
       environments:
         - name: 'dev'

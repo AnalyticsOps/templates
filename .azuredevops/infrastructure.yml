@@ -1,0 +1,47 @@
+trigger: none
+pool: 'analytics-ops-agents'
+
+
+resources:
+  repositories:
+    - repository: 'pipelines'
+      type: 'git'
+      name: 'AnalyticsOps/pipelines'
+      path: 'pipelines'
+      ref: 'refs/tags/v3.2'
+
+
+parameters:
+
+  - name: action
+    type: string
+    displayName: 'Action'
+    default: 'apply'
+    values:
+      - 'apply'
+      - 'destroy'
+
+  # Name of project must be less than X charecters
+  - name: projectName
+    default: '{{ projectName }}'
+    type: string
+
+  # Unique resource number change this if you make multiple deployements of the same setup
+  - name: resourceNumber
+    default: '1'
+    type: string
+
+
+stages:
+
+  - template: pipelines/infrastructure/stages/analytics-ops-project.yml@pipelines
+    parameters:
+      action: ${{ parameters.action }}
+      projectName: ${{ parameters.projectName }}
+      resourceNumber: ${{ parameters.resourceNumber }}
+      environments:
+        - name: 'dev'
+          workingDirectory: 'terraform/dev'
+          serviceConnection: '{{ serviceConnection }}'
+          resourceGroup: '{{ resourceGroup }}'
+          manualValidation: false

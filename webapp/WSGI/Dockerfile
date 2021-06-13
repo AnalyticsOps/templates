@@ -1,6 +1,6 @@
 FROM python:3.8-slim
 
-COPY . /app
+COPY src/ /app
 WORKDIR /app
 
 RUN apt-get update && apt-get upgrade -y

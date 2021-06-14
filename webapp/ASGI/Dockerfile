@@ -11,4 +11,4 @@ RUN pip3 install -r requirements.txt --pre
 
 EXPOSE 8000
 
-CMD uvicorn -b 0.0.0.0:8000 app:app
+CMD uvicorn --host 0.0.0.0 --port 8000 app:app

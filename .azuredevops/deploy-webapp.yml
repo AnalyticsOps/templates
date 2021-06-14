@@ -13,14 +13,6 @@ resources:
 
 parameters:
 
-  - name: action
-    type: string
-    displayName: 'Action'
-    default: 'apply'
-    values:
-      - 'apply'
-      - 'destroy'
-
   # Name of project must be less than X charecters
   - name: projectName
     default: '{{ projectName }}'
@@ -34,16 +26,13 @@ parameters:
 
 stages:
 
-  - template: pipelines/infrastructure/stages/analytics-ops-project.yml@pipelines
+  - template: pipelines/deploy/model/build-and-deploy.yml@pipelines
     parameters:
 {% raw %}
-      action: ${{ parameters.action }}
       projectName: ${{ parameters.projectName }}
       resourceNumber: ${{ parameters.resourceNumber }}
 {% endraw %}
+      crServiceConnection: '{{ serviceConnection }}'
       environments:
         - name: 'dev'
-          workingDirectory: 'terraform/dev'
           serviceConnection: '{{ serviceConnection }}'
-          resourceGroup: '{{ resourceGroup }}'
-

@@ -68,7 +68,7 @@ data "azurerm_resource_group" "this" {
 
 
 resource "azurerm_container_registry" "cr" {
-  name                = "cr${var.project_name}${var.resource_number}"
+  name                = "cr${var.project_name}${var.environment_name}${var.resource_number}"
   resource_group_name = data.azurerm_resource_group.this.name
   location            = data.azurerm_resource_group.this.location
   sku                 = "Premium"

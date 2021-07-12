@@ -8,7 +8,7 @@ resources:
       type: 'git'
       name: 'AnalyticsOps/pipelines'
       path: 'pipelines'
-      ref: 'refs/tags/v3.4'
+      ref: 'refs/tags/v3.5'
 
 
 parameters:
